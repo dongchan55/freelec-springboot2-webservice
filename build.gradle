@@ -1,0 +1,62 @@
+// Auth : https://jojoldu.tistory.com/539
+// Source : https://github.com/jojoldu/freelec-springboot2-webservice/tree/version/2020-12-11
+buildscript {
+    ext {       // Global Variable
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {  // 각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지 정함
+        mavenCentral()  // 라이브러리 업로드 난이로 인해 잘 사용하지 않는다고 함
+//        jcenter()       // 라이브러리 업로드를 간단하게 하기 위함 - 그러나 현재는 적용되지 않는듯?
+    }
+    dependencies {  // 프로젝트 개발에 필요한 의존성들을 선언
+        // "스프링 부트 그레이들 플러그인의 2.1.7.RELEASE를 의존성으로 받겠다"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+/* 자바와 스프링 부트를 사용하기 위한 필수 플러그인 추가(4가지) */
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 의존선을 관리해주는 플러그인으로 필수
+
+group 'com.jojoldu.book'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    /*  // 7 버전 미만까진 compile 사용
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    */
+
+    /* gradle 버전이 7 이상부턴 implementation 사용 */
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+/*
+plugins {
+    id 'java'
+}
+
+group 'com.jojoldu.book'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+*/
